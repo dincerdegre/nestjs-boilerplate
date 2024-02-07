@@ -1,0 +1,35 @@
+version: "3.7"
+services:
+  postgres:
+    image: postgres:latest
+    volumes:
+      - ./sql:/docker-entrypoint-initdb.d
+      - ./postgresdb/data:/var/lib/postgresql/data
+    restart: always
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    ports:
+      - ${POSTGRES_PORT}:${POSTGRES_PORT_OUT}
+    container_name: postgresdb_ihale
+    networks:
+      - ihale-network
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: pgadmin_ihale
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
+      PGADMIN_LISTEN_PORT: ${PGADMIN_LISTEN_PORT}
+    volumes:
+      - ./pgadmin:/var/lib/pgadmin
+    ports:
+      - ${PGADMIN_PORT}:${PGADMIN_PORT}
+    depends_on:
+      - postgres
+    networks:
+      - ihale-network
+networks:
+  ihale-network:
