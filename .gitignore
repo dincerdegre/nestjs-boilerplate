@@ -398,3 +398,8 @@ Temporary Items
 dist
 .webpack
 .serverless/**/*.zip
+
+# DB
+pgadmin
+postgresdb
+sql
