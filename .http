@@ -14,12 +14,6 @@ Accept: application/json
     "password": "demo123"
 }
 
-### USER GET Me
-GET {{baseUrl}}/users/me HTTP/1.1
-Content-Type: application/json
-Authorization: Bearer {{token}}
-Accept: application/json
-
 ### USER REGISTER
 POST {{baseUrl}}/auth/register HTTP/1.1
 Content-Type: application/json
@@ -34,3 +28,10 @@ Accept: application/json
     "password": "12345",
     "passwordConfirm": "12345"
 }
+
+
+### USER GET Me
+GET {{baseUrl}}/users/me HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+Accept: application/json
